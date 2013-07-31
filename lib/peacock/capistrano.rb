@@ -35,11 +35,11 @@ Capistrano::Configuration.instance(:must_exist).load do
       record[:type]=='CNAME'
     end
 
-    set(:domain) { staging_prod_record[:name] }
+    set(:domain) { staging_prod_record[:name][0..-2] }
   end
 
   def zone(hosted_zone)
-    zone = @r53.client.list_hosted_zones[:hosted_zones].find { |hosted_zones| hosted_zones[:zone].downcase==hosted_zone.downcase}
+    zone = @r53.client.list_hosted_zones[:hosted_zones].find { |hosted_zones| hosted_zones[:name].downcase==hosted_zone.downcase}
     raise "Could not find hosted zone ${hosted_zone.downcase}" if zone.nil?
     zone
   end
@@ -49,7 +49,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     staging_prod = record_sets.find do |record|
       record[:name] == hosted_zone && filter.call(record)
     end
-    raise "Staging Prod resource record not found (weight = 0, name = #{hosted_zone}, elb must not be current production elb #{current_prod_elb}" if staging_prod.nil?
+    raise "Staging prod resource record not found (weight = 0, name = #{hosted_zone}, elb must not be current production elb #{current_prod_elb}" if staging_prod.nil?
     staging_prod
   end
 
