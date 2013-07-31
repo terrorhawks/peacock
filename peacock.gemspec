@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Peacock::VERSION
   spec.authors       = ["David Clarke"]
   spec.email         = ["terrorhawks@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{A capistrano plugin for blue green deployments for AWS ELB}
+  spec.summary       = %q{Seem readme}
   spec.homepage      = ""
   spec.license       = "MIT"
 
