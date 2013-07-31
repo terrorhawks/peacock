@@ -38,8 +38,6 @@ Capistrano::Configuration.instance(:must_exist).load do
     set(:domain) { staging_prod_record[:name] }
   end
 
-  private
-
   def zone(hosted_zone)
     zone = @r53.client.list_hosted_zones[:hosted_zones].find { |hosted_zones| hosted_zones[:zone].downcase==hosted_zone.downcase}
     raise "Could not find hosted zone ${hosted_zone.downcase}" if zone.nil?
