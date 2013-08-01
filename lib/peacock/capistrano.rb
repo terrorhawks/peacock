@@ -49,7 +49,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     staging_prod = record_sets.find do |record|
       record[:name] == hosted_zone && filter.call(record)
     end
-    raise "Staging prod resource record not found (weight = 0, name = #{hosted_zone}, elb must not be current production elb #{current_prod_elb}" if staging_prod.nil?
+    raise "Cannot find record in #{hosted_zone}" if staging_prod.nil?
     staging_prod
   end
 
