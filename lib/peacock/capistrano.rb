@@ -35,7 +35,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       record[:type]=='CNAME'
     end
 
-    set(:domain) { staging_prod_record[:name][0..-2] }
+    staging_prod_record[:name][0..-2]
   end
 
   def zone(hosted_zone)
