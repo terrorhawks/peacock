@@ -29,7 +29,7 @@ Capistrano::Configuration.instance(:must_exist).load do
         record[:type]=='CNAME'
     end
 
-    raise "Weighting is not 0 for production staging #{staging_prod_record[:set_identifier]}, please adjust dns weighting to zero before deploying" if staging_prod_ref[:weight].to_i > 0
+    raise "Weighting is not 0 for production staging #{staging_prod_ref[:set_identifier]}, please adjust dns weighting to zero before deploying" if staging_prod_ref[:weight].to_i > 0
 
     staging_prod_record = find_record(staging_prod_ref[:set_identifier], record_sets) do |record|
       record[:type]=='CNAME'
