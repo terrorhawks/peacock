@@ -25,8 +25,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     record_sets = record_sets(zone)
 
     staging_prod_ref = find_record(fqdn, record_sets) do |record|
-      puts record[:resource_records].all? { |r| "#{r[:value]}.".downcase!=current_elb.downcase }
-      record[:resource_records].all? { |r| puts r[:value]; puts current_elb; "#{r[:value]}.".downcase!=current_elb.downcase } &&
+      record[:resource_records].all? { |r| "#{r[:value]}.".downcase!=current_elb.downcase } &&
         record[:type]=='CNAME'
     end
 
